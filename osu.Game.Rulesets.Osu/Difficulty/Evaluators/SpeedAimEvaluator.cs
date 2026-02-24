@@ -42,7 +42,7 @@ namespace osu.Game.Rulesets.Osu.Difficulty.Evaluators
             double strain = distanceBonus * 1000 / osuCurrObj.AdjustedDeltaTime;
 
             // Buff strain based on the BPM of the map
-            strain *= (DifficultyCalculationUtils.MillisecondsToBPM(osuCurrObj.AdjustedDeltaTime) + 8) / 18;
+            strain *= Math.Sqrt(DifficultyCalculationUtils.MillisecondsToBPM(osuCurrObj.AdjustedDeltaTime)) / 4;
 
             return strain;
         }
