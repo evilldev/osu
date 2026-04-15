@@ -29,7 +29,7 @@ namespace osu.Game.Rulesets.Osu.Difficulty
             if (mods.Any(m => m is OsuModAutopilot))
                 return 0;
 
-            double aimRating = Math.Pow(aimDifficultyValue, 0.63) * 0.02275;
+            double aimRating = Math.Pow(aimDifficultyValue, 0.63) * 0.0229;
 
             if (mods.Any(m => m is OsuModMagnetised))
             {
@@ -37,12 +37,7 @@ namespace osu.Game.Rulesets.Osu.Difficulty
                 aimRating *= 1.0 - magnetisedStrength;
             }
 
-            double ratingMultiplier = 1.0;
-
-            // It is important to consider accuracy difficulty when scaling with accuracy.
-            ratingMultiplier *= 0.98 + Math.Pow(Math.Max(0, overallDifficulty), 2) / 2500;
-
-            return aimRating * Math.Cbrt(ratingMultiplier);
+            return aimRating;
         }
 
         public double ComputeSpeedRating(double speedDifficultyValue)
